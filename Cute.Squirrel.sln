@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26621.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Feeder", "Cute.Squirrel.Feeder\Cute.Squirrel.Feeder.csproj", "{CFFF0D86-982C-47B8-969E-31C35D5AB3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.App.Daemon", "Cute.Squirrel.App.Daemon\Cute.Squirrel.App.Daemon.csproj", "{02E23F41-C59C-4775-A309-0BA8558247FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.App", "Cute.Squirrel.App\Cute.Squirrel.App.csproj", "{1DB50F7F-A9A6-4867-A61E-56EEF89B87A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Tribe", "Cute.Squirrel.Tribe\Cute.Squirrel.Tribe.csproj", "{37DDD7F7-E15A-48CA-AD4D-E1A8812605E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{33680FD1-7F17-4251-AAAF-59AF4D1A09AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{394B9F60-6224-4CB0-92C1-1C473FABD0A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development", "{2C3955A1-11AF-4EAD-803F-CAFFA5138184}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{D1AE66FC-3713-487D-92C0-B76A0BD59A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler", "Cute.Squirrel.Babbler\Cute.Squirrel.Babbler.csproj", "{E412D9F0-6B64-4496-B191-3F9E593C655F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler.SignalR", "Cute.Squirrel.Babbler.SignalR\Cute.Squirrel.Babbler.SignalR.csproj", "{5C7200F0-4755-40EF-9AB6-1EB75607811C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler.SignalR.Server", "Cute.Squirrel.Babbler.SignalR.Server\Cute.Squirrel.Babbler.SignalR.Server.csproj", "{8B6E2663-95D4-4376-9A09-F7FE4F863F17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{914524B3-28BE-4C7C-8382-0F52E94FAE55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole", "Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole\Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole.csproj", "{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole", "Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole\Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole.csproj", "{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFFF0D86-982C-47B8-969E-31C35D5AB3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFF0D86-982C-47B8-969E-31C35D5AB3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFF0D86-982C-47B8-969E-31C35D5AB3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFFF0D86-982C-47B8-969E-31C35D5AB3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E23F41-C59C-4775-A309-0BA8558247FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E23F41-C59C-4775-A309-0BA8558247FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E23F41-C59C-4775-A309-0BA8558247FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E23F41-C59C-4775-A309-0BA8558247FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB50F7F-A9A6-4867-A61E-56EEF89B87A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB50F7F-A9A6-4867-A61E-56EEF89B87A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB50F7F-A9A6-4867-A61E-56EEF89B87A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB50F7F-A9A6-4867-A61E-56EEF89B87A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37DDD7F7-E15A-48CA-AD4D-E1A8812605E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DDD7F7-E15A-48CA-AD4D-E1A8812605E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DDD7F7-E15A-48CA-AD4D-E1A8812605E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DDD7F7-E15A-48CA-AD4D-E1A8812605E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E412D9F0-6B64-4496-B191-3F9E593C655F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E412D9F0-6B64-4496-B191-3F9E593C655F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E412D9F0-6B64-4496-B191-3F9E593C655F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E412D9F0-6B64-4496-B191-3F9E593C655F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C7200F0-4755-40EF-9AB6-1EB75607811C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C7200F0-4755-40EF-9AB6-1EB75607811C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C7200F0-4755-40EF-9AB6-1EB75607811C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C7200F0-4755-40EF-9AB6-1EB75607811C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6E2663-95D4-4376-9A09-F7FE4F863F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6E2663-95D4-4376-9A09-F7FE4F863F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6E2663-95D4-4376-9A09-F7FE4F863F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6E2663-95D4-4376-9A09-F7FE4F863F17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CFFF0D86-982C-47B8-969E-31C35D5AB3FD} = {2C3955A1-11AF-4EAD-803F-CAFFA5138184}
+		{02E23F41-C59C-4775-A309-0BA8558247FA} = {394B9F60-6224-4CB0-92C1-1C473FABD0A1}
+		{1DB50F7F-A9A6-4867-A61E-56EEF89B87A7} = {394B9F60-6224-4CB0-92C1-1C473FABD0A1}
+		{37DDD7F7-E15A-48CA-AD4D-E1A8812605E4} = {33680FD1-7F17-4251-AAAF-59AF4D1A09AA}
+		{E412D9F0-6B64-4496-B191-3F9E593C655F} = {D1AE66FC-3713-487D-92C0-B76A0BD59A0F}
+		{5C7200F0-4755-40EF-9AB6-1EB75607811C} = {D1AE66FC-3713-487D-92C0-B76A0BD59A0F}
+		{8B6E2663-95D4-4376-9A09-F7FE4F863F17} = {D1AE66FC-3713-487D-92C0-B76A0BD59A0F}
+		{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
+		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D94FAECD-33A0-4410-B6DB-2962755E14B6}
+	EndGlobalSection
+EndGlobal
