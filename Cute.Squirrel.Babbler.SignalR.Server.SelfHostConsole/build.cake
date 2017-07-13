@@ -57,6 +57,10 @@ Task("CreateInstaller")
 		var settings = new SquirrelSettings();
 		settings.NoMsi = true;
 		settings.Silent = true;
+
+    // TODO Icon="icon.ico"
+    // TODO ShortcutLocations = "Desktop,StartMenu"
+    // TODO ProcessStartArgs=""
 		
     var version = Version.Parse(ParseAssemblyInfo(versionAssemblyInfoPath).AssemblyVersion);
     var packagePath = releasePackagesPath + "/" + projectName + "." + version.Major + "." + version.Minor + "." + version.Build + ".nupkg";
