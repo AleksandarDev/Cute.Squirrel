@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26621.2
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Feeder", "Cute.Squirrel.Feeder\Cute.Squirrel.Feeder.csproj", "{CFFF0D86-982C-47B8-969E-31C35D5AB3FD}"
 EndProject
@@ -30,6 +30,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole", "Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole\Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole.csproj", "{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole", "Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole\Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole.csproj", "{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.App.Daemon.ConsoleDemo", "Cute.Squirrel.App.Daemon.ConsoleDemo\Cute.Squirrel.App.Daemon.ConsoleDemo.csproj", "{B01974E2-0EF7-4B0C-987E-F2DD8E9F726D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cute.Squirrel.App.Daemon.Configurator", "Cute.Squirrel.App.Daemon.Configurator\Cute.Squirrel.App.Daemon.Configurator.csproj", "{9D878726-98C3-4228-B43C-F6A56E2E9C63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervisor.Clients.Video.Slave.Daemon", "Supervisor.Clients.Video.Slave.Daemon\Supervisor.Clients.Video.Slave.Daemon.csproj", "{38B0EE5C-D62C-42E6-8CCE-857FA07FD352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +79,18 @@ Global
 		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01974E2-0EF7-4B0C-987E-F2DD8E9F726D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01974E2-0EF7-4B0C-987E-F2DD8E9F726D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01974E2-0EF7-4B0C-987E-F2DD8E9F726D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01974E2-0EF7-4B0C-987E-F2DD8E9F726D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D878726-98C3-4228-B43C-F6A56E2E9C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D878726-98C3-4228-B43C-F6A56E2E9C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D878726-98C3-4228-B43C-F6A56E2E9C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D878726-98C3-4228-B43C-F6A56E2E9C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B0EE5C-D62C-42E6-8CCE-857FA07FD352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B0EE5C-D62C-42E6-8CCE-857FA07FD352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B0EE5C-D62C-42E6-8CCE-857FA07FD352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B0EE5C-D62C-42E6-8CCE-857FA07FD352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +105,9 @@ Global
 		{8B6E2663-95D4-4376-9A09-F7FE4F863F17} = {D1AE66FC-3713-487D-92C0-B76A0BD59A0F}
 		{6FFBB1E7-7D92-4AAC-BB07-368AF48ACFF4} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
 		{4431AE20-1EBE-44AD-BEFA-00F85B915C7A} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
+		{B01974E2-0EF7-4B0C-987E-F2DD8E9F726D} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
+		{9D878726-98C3-4228-B43C-F6A56E2E9C63} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
+		{38B0EE5C-D62C-42E6-8CCE-857FA07FD352} = {914524B3-28BE-4C7C-8382-0F52E94FAE55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D94FAECD-33A0-4410-B6DB-2962755E14B6}

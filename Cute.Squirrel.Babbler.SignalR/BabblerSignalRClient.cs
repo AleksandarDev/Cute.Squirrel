@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Cute.Squirrel.Babbler.SignalR
 {
-    public abstract class BabblerSignalRClient<T> : IBabbler<T> where T : class, IBabblerReportBase
+    public abstract class BabblerSignalRClient<T> : IBabblerSignalRClient<T> where T : class, IBabblerReportBase
     {
         private readonly string destinationFilter;
         private readonly string identifierFilter;
