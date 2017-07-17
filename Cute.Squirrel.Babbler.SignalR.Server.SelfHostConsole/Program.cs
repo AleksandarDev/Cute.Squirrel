@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Cute.Squirrel.Tribe;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
+using Microsoft.Owin.StaticFiles;
 using Newtonsoft.Json;
 using Owin;
+using Serilog;
 
 namespace Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole
 {
@@ -18,7 +21,14 @@ namespace Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole
     {
         static void Main(string[] args)
         {
-            string url = "http://localhost:47447";
+            // Configure logger
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.ColoredConsole()
+                .WriteTo.Seq("http://localhost:20827")
+                .CreateLogger();
+
+            string url = "http://localhost:20825";
             using (WebApp.Start(url))
             {
                 Console.WriteLine("Server is running on: {0}", url);
@@ -33,19 +43,40 @@ namespace Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole
         {
             while (true)
             {
-                Console.WriteLine("Requesting report...");
+                foreach (var tribeMember in TribeContext.tracker.GetMembers())
+                {
+                    Console.WriteLine(
+                        "Requesting report from {0} {1}", 
+                        tribeMember.Identifier.Source,
+                        tribeMember.Identifier.Identifier);
 
-                GlobalHost.ConnectionManager.GetHubContext<SelfHostHub>().Clients.All.ReportRequested("any", "any");
+                    GlobalHost.ConnectionManager.GetHubContext<SelfHostHub>().Clients.All.ReportRequested(tribeMember.Identifier.Source, tribeMember.Identifier.Identifier);
+                }
 
                 Thread.Sleep(5000);
             }
         }
     }
 
+    public static class TribeContext
+    {
+        public static TribeTracker<string> tracker = new TribeTracker<string>();
+
+
+    }
+
     class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseFileServer(new FileServerOptions
+            {
+                EnableDirectoryBrowsing = true,
+                StaticFileOptions =
+                {
+                    ServeUnknownFileTypes = true
+                }
+            });
             app.UseCors(CorsOptions.AllowAll);
             app.MapSignalR();
         }
@@ -62,7 +93,18 @@ namespace Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole
         public string BabblerVersion { get; set; }
     }
 
-    [HubName("SelfHost")]
+    public class DemoTribeMember : TribeMember<string>
+    {
+        public DemoTribeMember(TribeMemberIdentifier identifier) : base(identifier)
+        {
+        }
+
+        public DemoTribeMember(TribeMemberIdentifier identifier, string data) : base(identifier, data)
+        {
+        }
+    }
+
+    [HubName("Tribe")]
     public class SelfHostHub : BabblerSignalRHub<BabblerReport>
     {
         public override Task OnConnected()
@@ -89,6 +131,10 @@ namespace Cute.Squirrel.Babbler.SignalR.Server.SelfHostConsole
         public override void SendReport(BabblerReport report)
         {
             Console.WriteLine("Send report: " + JsonConvert.SerializeObject(report));
+
+            var identifier = new TribeMemberIdentifier(report.Source, report.Identifier);
+            if (!TribeContext.tracker.IsRegisteredMember(identifier))
+                TribeContext.tracker.RegisterMember(new DemoTribeMember(identifier));
 
             base.SendReport(report);
         }

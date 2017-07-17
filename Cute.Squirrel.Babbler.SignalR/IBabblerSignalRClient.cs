@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog;
 
 namespace Cute.Squirrel.Babbler.SignalR
 {
@@ -9,6 +10,8 @@ namespace Cute.Squirrel.Babbler.SignalR
         event EventHandler OnConnected;
 
         event EventHandler OnDisconnected;
+
+        ILogger Logger { get; set; }
 
         void Connect(string url, string hubName);
     }

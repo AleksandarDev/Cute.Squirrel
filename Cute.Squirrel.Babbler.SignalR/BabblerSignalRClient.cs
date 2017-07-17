@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Cute.Squirrel.Babbler.SignalR
 {
@@ -15,6 +19,18 @@ namespace Cute.Squirrel.Babbler.SignalR
         public event EventHandler OnConnected;
         public event EventHandler OnDisconnected;
 
+        private ILogger logger;
+
+        public ILogger Logger
+        {
+            get => this.logger;
+            set
+            {
+                this.logger = value;
+                if (this.client != null)
+                    this.client.Logger = this.Logger;
+            }
+        }
 
         protected BabblerSignalRClient(string destination, string identifier)
         {
@@ -32,14 +48,16 @@ namespace Cute.Squirrel.Babbler.SignalR
 
         private void ClientOnOnDisconnected(object sender, EventArgs eventArgs)
         {
+            this.logger.Information("Babbler SignalR client disconnected");
             this.OnDisconnected?.Invoke(this, eventArgs);
         }
 
         private void ClientOnOnConnected(object sender, EventArgs eventArgs)
         {
-            this.ReportRequested(this.destinationFilter, this.identifierFilter);
-
+            this.logger.Information("Babbler SignalR client connected");
             this.OnConnected?.Invoke(this, eventArgs);
+
+            this.ReportRequested(this.destinationFilter, this.identifierFilter);
         }
 
         public void Connect(string url, string hubName)
@@ -56,13 +74,13 @@ namespace Cute.Squirrel.Babbler.SignalR
 
         private void ReportAvailableInternal(T report)
         {
-            if (report == null ||
-                !this.CatchAllMessages && 
-                report.Source == this.destinationFilter && 
-                report.Identifier == this.identifierFilter)
+            if (report == null)
                 return;
 
-            this.ReportAvailable(report);
+            if (this.CatchAllMessages ||
+                this.destinationFilter == report.Source &&
+                this.identifierFilter == report.Identifier)
+                this.ReportAvailable(report);
         }
 
         public virtual void ReportAvailable(T report)
@@ -72,12 +90,10 @@ namespace Cute.Squirrel.Babbler.SignalR
         private void ReportRequestedInternal(string destination, string identifier)
         {
             // Ignore if not for this client
-            if (!this.CatchAllMessages && 
-                this.destinationFilter == destination && 
+            if (this.CatchAllMessages ||
+                this.destinationFilter == destination &&
                 this.identifierFilter == identifier)
-                return;
-
-            this.ReportRequested(destination, identifier);
+                this.ReportRequested(destination, identifier);
         }
 
         public virtual void ReportRequested(string destination, string identifier)
@@ -88,6 +104,15 @@ namespace Cute.Squirrel.Babbler.SignalR
         {
             if (report == null)
                 return;
+
+            if (string.IsNullOrWhiteSpace(report.ComputerName))
+                report.ComputerName = Environment.MachineName;
+
+            if (string.IsNullOrWhiteSpace(report.IpAddress))
+                report.IpAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork)?.ToString();
+
+            report.BabblerType = "BabblerSignalR";
+            report.BabblerVersion = "1.0.0.0";
 
             if (this.client.IsConnected)
                 this.client.Proxy.Invoke("SendReport", report);

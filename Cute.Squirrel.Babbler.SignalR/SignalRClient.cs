@@ -1,6 +1,7 @@
 using System;
 using System.Timers;
 using Microsoft.AspNet.SignalR.Client;
+using Serilog;
 
 namespace Cute.Squirrel.Babbler.SignalR
 {
@@ -12,10 +13,14 @@ namespace Cute.Squirrel.Babbler.SignalR
         private HubConnection connection;
         private IHubProxy proxy;
 
+        private bool isConnected = true;
+
         private readonly Timer reconnectTimer;
 
         public event EventHandler OnConnected;
         public event EventHandler OnDisconnected;
+
+        public ILogger Logger { get; set; }
 
 
         public SignalRClient()
@@ -30,8 +35,6 @@ namespace Cute.Squirrel.Babbler.SignalR
 
         private void ReconnectTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            // TODO Log
-
             this.reconnectTimer.Stop();
 
             // Reconnect if disconnected
@@ -55,8 +58,18 @@ namespace Cute.Squirrel.Babbler.SignalR
         private void ConnectionOnStateChanged(StateChange stateChange)
         {
             if (this.IsConnected)
+            {
+                this.isConnected = true;
                 this.OnConnected?.Invoke(this, null);
-            else this.OnDisconnected?.Invoke(this, null);
+            }
+            else
+            {
+                if (this.isConnected)
+                {
+                    this.isConnected = false;
+                    this.OnDisconnected?.Invoke(this, null);
+                }
+            }
         }
 
         private async void Connect()
@@ -70,9 +83,8 @@ namespace Cute.Squirrel.Babbler.SignalR
                 if (this.connection.State != ConnectionState.Connected)
                     throw new Exception("Connection state is not `Connected`.");
             }
-            catch (Exception ex)
+            catch
             {
-                // TODO Log
                 this.ConnectionClosed();
             }
         }
@@ -91,7 +103,7 @@ namespace Cute.Squirrel.Babbler.SignalR
             }
             catch (Exception ex)
             {
-                // TODO Log
+                this.Logger?.Debug(ex, "Babbler SignalR client - error disconnecting");
             }
         }
 

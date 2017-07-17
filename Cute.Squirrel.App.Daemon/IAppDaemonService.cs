@@ -1,13 +1,14 @@
+using Serilog;
 using Topshelf.Squirrel.Updater.Interfaces;
 
 namespace Cute.Squirrel.App.Daemon
 {
     public interface IAppDaemonService : ISelfUpdatableService
     {
-        IUpdater Updater { get; set; }
+        string Identifier { get; set; }
 
-        void Start();
+        string Source { get; set; }
 
-        void Stop();
+        ILogger Logger { get; set; }
     }
 }

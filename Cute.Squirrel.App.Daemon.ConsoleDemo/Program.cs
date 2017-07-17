@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace Cute.Squirrel.App.Daemon.ConsoleDemo
 {
@@ -15,42 +16,24 @@ namespace Cute.Squirrel.App.Daemon.ConsoleDemo
     {
         static void Main(string[] args)
         {
+            var address = DemoAppDaemon.ResolveUpdaterAddress();
+            var host = new Uri(address, UriKind.Absolute).Host;
+
+            // Configure logger
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.ColoredConsole(outputTemplate: "{Timestamp:HH:mm:ss} {Message}{NewLine}{Exception}")
+                .WriteTo.Seq("http://" + host + ":20827")
+                .Enrich.WithProperty("App", "DaemonConsoleDemo")
+                .CreateLogger();
+
+            // Configure daemon
             AppDaemonServiceHost.HostDaemon<DemoAppDaemon>(
-                "CuteSquirrel.DemoAppDaemon",
+                DemoAppDaemon.ResolveUpdaterAddress(),
+                "CuteSquirrelAppDaemonConsoleDemo",
                 "Demo App Daemon for Cute Squirrel",
-                "CuteSquirrel Demo App Daemon");
-        }
-    }
-
-    public class DemoAppDaemon : AppDaemonServiceBase
-    {
-        public override string GetTribeAddress()
-        {
-            if (string.IsNullOrWhiteSpace(Properties.DaemonSettings.Default.TribeAddress))
-            {
-                this.ReadFromDaemonConfiguration();
-                if (string.IsNullOrWhiteSpace(Properties.DaemonSettings.Default.TribeAddress))
-                {
-                    this.AskForTribeAddress();
-                    this.ReadFromDaemonConfiguration();
-                }
-            }
-
-            return Properties.DaemonSettings.Default.TribeAddress;
-        }
-
-        private void ReadFromDaemonConfiguration()
-        {
-            try
-            {
-                var configuration = File.ReadAllText(this.daemonConfigurationLocation);
-                Properties.DaemonSettings.Default.TribeAddress = configuration;
-                Properties.DaemonSettings.Default.Save();
-            }
-            catch
-            {
-                // Nothing to do (maybe needs to be created)
-            }
+                "CuteSquirrel Demo App Daemon",
+                Log.Logger);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole
 {
@@ -12,6 +13,13 @@ namespace Cute.Squirrel.Babbler.SignalR.SelfHostClientConsole
     {
         static void Main(string[] args)
         {
+            // Configure logger
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.ColoredConsole()
+                .WriteTo.Seq("http://localhost:20827")
+                .CreateLogger();
+
             var client = new SelfHostClient();
             client.CatchAllMessages = true;
             client.Connect("http://localhost:47447", "SelfHost");
