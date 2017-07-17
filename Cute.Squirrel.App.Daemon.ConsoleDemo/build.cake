@@ -92,6 +92,7 @@ Task("CreateInstaller")
 		var settings = new SquirrelSettings();
 		settings.NoMsi = true;
 		settings.Silent = true;
+    settings.ArgumentCustomization = args => args.Append("-no-delta");
 
     // TODO Icon="icon.ico"
     // TODO ShortcutLocations = "Desktop,StartMenu"
